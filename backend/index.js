@@ -8,6 +8,7 @@ const productCategoryRoute = require('./routes/product/category');
 const supplierRoute = require('./routes/supplier/supplier');
 const productRoute = require('./routes/product/product');
 const dashboardRoute = require('./routes/dashboard');
+const customerRoute = require('./routes/customer/customer');
 
 const app = express();
 app.use(cors());
@@ -21,5 +22,6 @@ app.use('/product/category', productCategoryRoute);
 app.use('/supplier', supplierRoute);
 app.use('/product', productRoute);
 app.use('/dashboard', dashboardRoute);
+app.use('/customer', customerRoute);
 
 module.exports = app;

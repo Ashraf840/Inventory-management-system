@@ -84,3 +84,14 @@ CREATE TABLE IF NOT EXISTS `inventory_mng_system`.`product` (
         ON DELETE SET NULL
         ON UPDATE CASCADE
 );
+
+
+CREATE TABLE IF NOT EXISTS `inventory_mng_system`.`customer` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    `contact` VARCHAR(20) NOT NULL,
+    `email` VARCHAR(100),
+    `address` VARCHAR(255),
+    UNIQUE(`email`),
+    PRIMARY KEY (`id`)
+);
