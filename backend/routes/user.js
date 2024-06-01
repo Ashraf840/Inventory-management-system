@@ -1,5 +1,7 @@
 const express = require('express');
 const connection = require('../connection');
+const jwt = require('jsonwebtoken');
+const config = require('../config.json');
 
 const router = express.Router();
 
@@ -30,13 +32,25 @@ router.post('/signup', (req, res) => {
 
 router.post('/login', (req, res) => {
     let user = req.body;
-    query = "SELECT name, contactNumber, email, status, role from inventory_mng_system.user WHERE email=?";
+    query = "SELECT name, contactNumber, email, status, role, password from inventory_mng_system.user WHERE email=?";
     connection.query(query, [user.email], (err, result) => {
-        console.log("query result", result);
         if (!err) {
-
+            if (result.length <= 0 || result[0].password !== user.password) {
+                return res.status(401).json({ message: "Incorrect email or password" });
+            } 
+            else if (result[0].status === "false") {
+                return res.status(401).json({ message: "Wait for admin approval" });
+            } 
+            else if (result[0].password === user.password) {
+                const response = { email: result[0].email, role: result[0].role };
+                const accessToken = jwt.sign(response, config.ACCESS_TOKEN, { expiresIn: '8h' });
+                return res.status(200).json({ toen: accessToken });
+            } 
+            else {
+                return res.status(401).json({ message: "Somethign went wrong. Please try again later." });
+            }
         } else {
-            return res.status()
+            return res.status(500).json(err);
         }
     });
 });
