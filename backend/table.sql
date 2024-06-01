@@ -1,4 +1,4 @@
-CREATE SCHEMA `inventory_mng_system`;
+CREATE SCHEMA IF NOT EXISTS `inventory_mng_system`;
 
 CREATE TABLE `inventory_mng_system`.`user` (
 	`id` INT NOT NULL AUTO_INCREMENT,
@@ -17,3 +17,9 @@ INSERT INTO `inventory_mng_system`.`user` (name, contactNumber, email, password,
 VALUES ('admin', '123987198237', 'admin@gmail.com', '12345', 'true', 'admin');
 
 SELECT * FROM `inventory_mng_system`.`user`;
+
+-- Get all the staff users
+SELECT id, name, contactNumber, email, password, status, role FROM `inventory_mng_system`.`user` WHERE role='staff';
+
+-- Update Staff status from false to true or vice versa
+UPDATE `inventory_mng_system`.`user` SET status=false WHERE id=4;
