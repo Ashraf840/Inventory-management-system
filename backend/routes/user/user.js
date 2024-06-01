@@ -1,9 +1,9 @@
 const express = require('express');
-const connection = require('../connection');
+const connection = require('../../connection');
 const jwt = require('jsonwebtoken');
-const config = require('../config.json');
-const auth = require('../services/authentication');
-const checkRole = require('../services/checkRole');
+const config = require('../../config.json');
+const auth = require('../../services/authentication');
+const checkRole = require('../../services/checkRole');
 
 const router = express.Router();
 
