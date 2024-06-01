@@ -46,10 +46,10 @@ router.patch('/update', auth.authenticateToken, checkRole.AllowAdminOnly, (req, 
 });
 
 
-router.delete("/delete", auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
-    let cate = req.body;
+router.delete("/delete/:id", auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
+    let id = req.params.id;
     let query = "DELETE FROM inventory_mng_system.product_category WHERE id=?";
-    connection.query(query, [cate.id], (err, result) => {
+    connection.query(query, [id], (err, result) => {
         if (!err) {
             return res.sendStatus(204);
         } else {

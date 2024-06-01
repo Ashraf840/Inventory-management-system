@@ -50,10 +50,10 @@ router.patch('/update', auth.authenticateToken, checkRole.AllowAdminOnly, (req, 
 });
 
 
-router.delete("/delete", auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
-    let m_unit = req.body;
+router.delete("/delete/:id", auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
+    let id = req.params.id;
     let query = "DELETE FROM inventory_mng_system.measurement_unit WHERE id=?";
-    connection.query(query, [m_unit.id], (err, result) => {
+    connection.query(query, [id], (err, result) => {
         if (!err) {
             return res.sendStatus(204);
         } else {

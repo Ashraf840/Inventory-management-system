@@ -31,7 +31,7 @@ router.post('/add', auth.authenticateToken, checkRole.AllowAdminOnly, (req, res,
 });
 
 
-// Handle from the frontend
+// Handle from the frontend, when updating a record from the frontend, fetch the previous values
 // Even in the update form in the frontend, the 'address' field stays empty, then put null anyway.
 router.patch('/update', auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
     let supp = req.body;
@@ -50,10 +50,10 @@ router.patch('/update', auth.authenticateToken, checkRole.AllowAdminOnly, (req, 
 });
 
 
-router.delete("/delete", auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
-    let supp = req.body;
+router.delete("/delete/:id", auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
+    let id = req.params.id;
     let query = "DELETE FROM inventory_mng_system.supplier WHERE id=?";
-    connection.query(query, [supp.id], (err, result) => {
+    connection.query(query, [id], (err, result) => {
         if (!err) {
             return res.sendStatus(204);
         } else {
