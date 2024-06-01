@@ -54,3 +54,33 @@ CREATE TABLE IF NOT EXISTS `inventory_mng_system`.`supplier` (
     UNIQUE(`email`),
     PRIMARY KEY (`id`)
 );
+
+
+--  Table: product
+CREATE TABLE IF NOT EXISTS `inventory_mng_system`.`product` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    `category` INT,
+    `supplier` INT,
+    `cost_price` FLOAT NOT NULL,
+    `selling_price` FLOAT NOT NULL,
+    `minimum_stock` INT NOT NULL,
+    `measurement_unit` INT,
+    `reorder_stock_quantity` INT NOT NULL,
+    PRIMARY KEY (`id`),
+    CONSTRAINT `fk_category`
+        FOREIGN KEY (`category`)
+        REFERENCES `product_category` (`id`)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+    CONSTRAINT `fk_supplier`
+        FOREIGN KEY (`supplier`)
+        REFERENCES `supplier` (`id`)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+    CONSTRAINT `fk_measurement_unit`
+        FOREIGN KEY (`measurement_unit`)
+        REFERENCES `measurement_unit` (`id`)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+);

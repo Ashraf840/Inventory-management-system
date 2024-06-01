@@ -37,6 +37,8 @@ SELECT * FROM `inventory_mng_system`.`product_category`;
 
 INSERT INTO `inventory_mng_system`.`product_category` (category) VALUES ("cate-1");
 
+INSERT INTO `inventory_mng_system`.`product_category` (category) VALUES ("cate-2");
+
 
 -- TABLE: supplier
 SELECT * FROM `inventory_mng_system`.`supplier`;
@@ -46,3 +48,21 @@ INSERT INTO `inventory_mng_system`.`supplier` (name, contact, email, address) VA
 INSERT INTO `inventory_mng_system`.`supplier` (name, contact, email) VALUES ("supp-2", "365234765", "supp2@gmail.com");
 
 UPDATE `inventory_mng_system`.`supplier` SET name="supp-4", contact="2348729387", email="supp4@gmail.com", address="supp-4 address" WHERE id=5;
+
+
+-- TABLE: product
+SELECT * FROM `inventory_mng_system`.`product`;
+
+INSERT INTO `inventory_mng_system`.`product` 
+(name, category, supplier, cost_price, selling_price, minimum_stock, measurement_unit, reorder_stock_quantity) 
+VALUES ("prod-1", 4, 6, 30.56, 40.23, 10, 5, 4);
+
+INSERT INTO `inventory_mng_system`.`supplier` (name, contact, email) VALUES ("supp-2", "365234765", "supp2@gmail.com");
+
+UPDATE `inventory_mng_system`.`supplier` SET name="supp-4", contact="2348729387", email="supp4@gmail.com", address="supp-4 address" WHERE id=5;
+
+
+-- Check the record to parent tables for foreign key value integrity
+SELECT * FROM `inventory_mng_system`.`product_category` WHERE `id` = 4;
+SELECT * FROM `inventory_mng_system`.`supplier` WHERE `id` = 6;
+SELECT * FROM `inventory_mng_system`.`measurement_unit` WHERE `id` = 5;
