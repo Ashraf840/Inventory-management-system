@@ -2,6 +2,8 @@ const express = require('express');
 const connection = require('../connection');
 const jwt = require('jsonwebtoken');
 const config = require('../config.json');
+const auth = require('../services/authentication');
+const checkRole = require('../services/checkRole');
 
 const router = express.Router();
 
@@ -61,8 +63,9 @@ router.post('/login', (req, res) => {
 });
 
 
+// Allow: Admin Only
 // Purpose: List all the staffs in admin dashboard. So the admin can change the "status"=true or "status"=false.
-router.get('/get/staff', (req, res) => {
+router.get('/get/staff', auth.authenticateToken, checkRole.AllowAdminOnly, (req, res) => {
     let query = "SELECT id, name, contactNumber, email, password, status, role FROM inventory_mng_system.user WHERE role='staff'";
     connection.query(query, (err, result) => {
         if (!err) {
@@ -74,12 +77,13 @@ router.get('/get/staff', (req, res) => {
 });
 
 
-router.patch('/update/staff', (req, res) => {
+// Allow: Admin only
+router.patch('/update/staff', auth.authenticateToken, checkRole.AllowAdminOnly, (req, res) => {
     let user = req.body;
     let query = "UPDATE inventory_mng_system.user SET status=? WHERE id=?";
     connection.query(query, [user.status, user.id], (err, result) => {
         if (!err) {
-            console.log("result:", result);
+            // console.log("result:", result);
             if (result.affectedRows == 0) {
                 return res.status(404).json({ message: "User id does not exist!" });
             }

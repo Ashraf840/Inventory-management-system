@@ -5,5 +5,7 @@
     "DB_HOST" : "localhost",
     "DB_PASSWORD" : "ashraf826546",
     "DB_NAME" : "inventory_mng_system",
-    "ACCESS_TOKEN": "73c39641b1e3efdf6878d028dcd79342bddfff673489ff7a27a3d198756a1f3e729502ac215fd106fbb8b11cab76df620c00a0a0c6e1e7988090dfc397dda6fe"
+    "ACCESS_TOKEN": "73c39641b1e3efdf6878d028dcd79342bddfff673489ff7a27a3d198756a1f3e729502ac215fd106fbb8b11cab76df620c00a0a0c6e1e7988090dfc397dda6fe",
+    "USER_ADMIN": "admin",
+    "USER_STAFF": "staff"
 }
