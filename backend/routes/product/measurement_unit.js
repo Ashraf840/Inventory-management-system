@@ -5,7 +5,7 @@ const auth = require('../../services/authentication');
 const checkRole = require('../../services/checkRole');
 
 
-router.get('/get', auth.authenticateToken, (req, res, next) => {
+router.get('/get', (req, res, next) => {
     let query = "SELECT * FROM inventory_mng_system.measurement_unit";
     connection.query(query, (err, result) => {
         if (!err) {
@@ -17,7 +17,7 @@ router.get('/get', auth.authenticateToken, (req, res, next) => {
 });
 
 
-router.post('/add', auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
+router.post('/add', (req, res, next) => {
     let m_unit = req.body;
     let abbreviation = m_unit.abbreviation ? m_unit.abbreviation : null;
     let query = "INSERT INTO inventory_mng_system.measurement_unit (measurement_unit, abbreviation) VALUES (?, ?)";
@@ -50,7 +50,7 @@ router.patch('/update', auth.authenticateToken, checkRole.AllowAdminOnly, (req, 
 });
 
 
-router.delete("/delete/:id", auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
+router.delete("/delete/:id", (req, res, next) => {
     let id = req.params.id;
     let query = "DELETE FROM inventory_mng_system.measurement_unit WHERE id=?";
     connection.query(query, [id], (err, result) => {

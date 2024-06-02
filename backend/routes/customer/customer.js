@@ -5,7 +5,7 @@ const auth = require('../../services/authentication');
 const checkRole = require('../../services/checkRole');
 
 
-router.get('/get', auth.authenticateToken, (req, res, next) => {
+router.get('/get', (req, res, next) => {
     let query = "SELECT * FROM inventory_mng_system.customer";
     connection.query(query, (err, result) => {
         if (!err) {
@@ -17,7 +17,7 @@ router.get('/get', auth.authenticateToken, (req, res, next) => {
 });
 
 
-router.post('/add', auth.authenticateToken, (req, res, next) => {
+router.post('/add', (req, res, next) => {
     let cust = req.body;
     let email = cust.email ? cust.email : null;
     let address = cust.address ? cust.address : null;
@@ -36,7 +36,7 @@ router.post('/add', auth.authenticateToken, (req, res, next) => {
 
 // Handle from the frontend, when updating a record from the frontend, fetch the previous values
 // Even in the update form in the frontend, the 'address' field stays empty, then put null anyway.
-router.patch('/update', auth.authenticateToken, (req, res, next) => {
+router.patch('/update', (req, res, next) => {
     let cust = req.body;
     let email = cust.email ? cust.email : null;
     let address = cust.address ? cust.address : null;
@@ -54,7 +54,7 @@ router.patch('/update', auth.authenticateToken, (req, res, next) => {
 });
 
 
-router.delete("/delete/:id", auth.authenticateToken, (req, res, next) => {
+router.delete("/delete/:id", (req, res, next) => {
     let id = req.params.id;
     let query = "DELETE FROM inventory_mng_system.customer WHERE id=?";
     connection.query(query, [id], (err, result) => {

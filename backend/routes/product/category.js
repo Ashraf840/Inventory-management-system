@@ -5,7 +5,7 @@ const auth = require('../../services/authentication');
 const checkRole = require('../../services/checkRole');
 
 
-router.get('/get', auth.authenticateToken, (req, res, next) => {
+router.get('/get', (req, res, next) => {
     let query = "SELECT * FROM inventory_mng_system.product_category";
     connection.query(query, (err, result) => {
         if (!err) {
@@ -17,7 +17,7 @@ router.get('/get', auth.authenticateToken, (req, res, next) => {
 });
 
 
-router.post('/add', auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
+router.post('/add', checkRole.AllowAdminOnly, (req, res, next) => {
     let cate = req.body;
     let query = "INSERT INTO inventory_mng_system.product_category (category) VALUES (?)";
     connection.query(query, [cate.category], (err, result) => {
@@ -30,7 +30,7 @@ router.post('/add', auth.authenticateToken, checkRole.AllowAdminOnly, (req, res,
 });
 
 
-router.patch('/update', auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
+router.patch('/update', checkRole.AllowAdminOnly, (req, res, next) => {
     let cate = req.body;
     let query = "UPDATE inventory_mng_system.product_category SET category=? WHERE id=?";
     connection.query(query, [cate.category, cate.id], (err, result) => {
@@ -46,7 +46,7 @@ router.patch('/update', auth.authenticateToken, checkRole.AllowAdminOnly, (req, 
 });
 
 
-router.delete("/delete/:id", auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
+router.delete("/delete/:id", checkRole.AllowAdminOnly, (req, res, next) => {
     let id = req.params.id;
     let query = "DELETE FROM inventory_mng_system.product_category WHERE id=?";
     connection.query(query, [id], (err, result) => {

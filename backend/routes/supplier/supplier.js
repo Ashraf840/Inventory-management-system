@@ -5,7 +5,7 @@ const auth = require('../../services/authentication');
 const checkRole = require('../../services/checkRole');
 
 
-router.get('/get', auth.authenticateToken, (req, res, next) => {
+router.get('/get', (req, res, next) => {
     let query = "SELECT * FROM inventory_mng_system.supplier";
     connection.query(query, (err, result) => {
         if (!err) {
@@ -17,7 +17,7 @@ router.get('/get', auth.authenticateToken, (req, res, next) => {
 });
 
 
-router.post('/add', auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
+router.post('/add', (req, res, next) => {
     let supp = req.body;
     let address = supp.address ? supp.address : null;
     let query = "INSERT INTO inventory_mng_system.supplier (name, contact, email, address) VALUES (?,?,?,?)";
@@ -33,7 +33,7 @@ router.post('/add', auth.authenticateToken, checkRole.AllowAdminOnly, (req, res,
 
 // Handle from the frontend, when updating a record from the frontend, fetch the previous values
 // Even in the update form in the frontend, the 'address' field stays empty, then put null anyway.
-router.patch('/update', auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
+router.patch('/update', (req, res, next) => {
     let supp = req.body;
     let address = supp.address ? supp.address : null;
     let query = "UPDATE inventory_mng_system.supplier SET name=?, contact=?, email=?, address=? WHERE id=?";
@@ -50,7 +50,7 @@ router.patch('/update', auth.authenticateToken, checkRole.AllowAdminOnly, (req, 
 });
 
 
-router.delete("/delete/:id", auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
+router.delete("/delete/:id", (req, res, next) => {
     let id = req.params.id;
     let query = "DELETE FROM inventory_mng_system.supplier WHERE id=?";
     connection.query(query, [id], (err, result) => {

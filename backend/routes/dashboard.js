@@ -4,7 +4,7 @@ const router = express.Router();
 const auth = require('../services/authentication');
 
 
-router.get('/', auth.authenticateToken, (req, res, next) => {
+router.get('/', (req, res, next) => {
     var productCount;
     var supplierCount;
 
