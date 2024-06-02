@@ -1,25 +1,27 @@
-
+<!-- Top Navbar -->
 <div class="topnav">
-  <h1>Inventory Management System</h1>
+  <h1 routerLink="/">Inventory Management System</h1>
   <span class="menu">
     <i class="fa-solid fa-list"></i>
   </span>
 </div>
+<!-- Top Navbar -->
 
 
+<!-- Side Navbar -->
 <div class="sidebar shadow p-1" id="sidebar">
   <ul>
-    <li><a href="#">
+    <li><a routerLink="/">
       <span><i class="fa-solid fa-gauge"></i></span>
       Dashboard</a></li>
     <li>
-      <a href="#" class="product" (click)="toggleDropdown('product')">
+      <a class="product" (click)="toggleDropdown('product')">
         <span><i class="fa-solid fa-basket-shopping"></i></span>
         Product
         <span><i class="fa-solid fa-arrow-right"></i></span>
       </a>
       <ul class="dropdown-container-product">
-        <li><a href="#">Products</a></li>
+        <li><a routerLink="/product">Products</a></li>
         <li><a href="#">Measure Unit</a></li>
         <li><a href="#">Catgory</a></li>
       </ul>
@@ -43,7 +45,7 @@
         <span><i class="fa-solid fa-arrow-rotate-left"></i></span>
         Return</a></li>
     <li>
-      <a href="#" class="accounting" (click)="toggleDropdown('accounting')">
+      <a class="accounting" (click)="toggleDropdown('accounting')">
         <span><i class="fa-solid fa-file-invoice-dollar"></i></span>
         Accounting
         <span><i class="fa-solid fa-arrow-right"></i></span>
@@ -55,5 +57,11 @@
     </li>
   </ul>
 </div>
+<!-- Side Navbar -->
 
-<router-outlet></router-outlet>
+
+<!-- Main Content -->
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>
+<!-- Main Content -->

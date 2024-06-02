@@ -11,7 +11,7 @@
 .topnav h1 {
     float: left;
     text-align: center;
-    font-size: 25px;
+    font-size: 21px;
     font-weight: bold;
     padding: 14px 16px;
 }
@@ -48,6 +48,7 @@
     color: #000;
     text-align: left;
     display: block;
+    cursor: pointer;
 }
 
 .sidebar span i {
@@ -76,4 +77,10 @@
 .dropdown-container-accounting.show {
     max-height: 1000px;
     transition: all .15s ease;
+}
+
+.main-content {
+    margin-left: 260px;
+    margin-top: 90px;
+    padding: 1px 16px;
 }
