@@ -1,6 +1,8 @@
 <div class="div">
 
-    <h1>Products</h1>
+    <h1>Products
+      <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-plus ms-2" style="font-size: 25px; cursor: pointer;"></i></span>
+    </h1>
     
     <table class="table">
       <thead>
@@ -14,6 +16,8 @@
           <th scope="col">Min. Stock</th>
           <th scope="col">Reorder Stock Qnt.</th>
           <th scope="col">Measurement Unit</th>
+          <th scope="col">Detail</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -27,8 +31,74 @@
           <th>{{ prod.minimum_stock }}</th>
           <th>{{ prod.reorder_stock_quantity }}</th>
           <th>{{ prod.measurement_unit }}</th>
+          <td>
+            <button type="button" class="btn btn-info" (click)="update_product(prod.id)">Detail</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="delete_product(prod.id)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
+
+
+    <!-- Add Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Form content -->
+          <form>
+            <div class="mb-3">
+              <label for="p_name" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="p_name" [(ngModel)]="formData.name" name="name">
+            </div>
+            <div class="mb-3">
+              <label for="p_cate" class="form-label">Category</label>
+              <select class="form-select" aria-label="Categories" [(ngModel)]="formData.category" (change)="onCategoryChange($event)" name="category">
+                <option [value]="cate.id" *ngFor="let cate of categories">{{ cate.category }}</option>
+            </select>
+            </div>
+            <div class="mb-3">
+              <label for="p_supp" class="form-label">Supplier</label>
+              <select class="form-select" aria-label="Suppliers" [(ngModel)]="formData.supplier_name" (change)="onSupplierChange($event)" name="supplier_name">
+                <option [value]="supp.id" *ngFor="let supp of suppliers">{{ supp.name }}</option>
+            </select>
+            </div>
+            <div class="mb-3">
+              <label for="p_cprice" class="form-label">Cost Price</label>
+              <input type="number" class="form-control" id="p_cprice" [(ngModel)]="formData.cost_price" name="cost_price">
+            </div>
+            <div class="mb-3">
+              <label for="p_sprice" class="form-label">Selling Price</label>
+              <input type="number" class="form-control" id="p_sprice" [(ngModel)]="formData.selling_price" name="selling_price">
+            </div>
+            <div class="mb-3">
+              <label for="p_min_stock" class="form-label">Minimum Stock</label>
+              <input type="number" class="form-control" id="p_min_stock" [(ngModel)]="formData.minimum_stock" name="minimum_stock">
+            </div>
+            <div class="mb-3">
+              <label for="p_m_unit" class="form-label">Measurement Unit</label>
+              <select class="form-select" aria-label="Measurement Units" [(ngModel)]="formData.measurement_unit" (change)="onMeasurementUnitChange($event)" name="measurement_unit">
+                <option [value]="m_unit.id" *ngFor="let m_unit of measurementUnits">{{ m_unit.measurement_unit }}</option>
+            </select>
+            </div>
+            <div class="mb-3">
+              <label for="p_re_stock_qunt" class="form-label">Reorder Stock Quantity</label>
+              <input type="number" class="form-control" id="p_re_stock_qunt" [(ngModel)]="formData.reorder_stock_quantity" name="reorder_stock_quantity">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" (click)="add_prod()">Add</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
     
 </div>

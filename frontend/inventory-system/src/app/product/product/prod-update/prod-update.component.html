@@ -1,0 +1,49 @@
+<div class="div">
+
+    <h1>Product Information</h1>
+
+    <form>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="formData.name" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-select" aria-label="Categories" [(ngModel)]="formData.category" (change)="onCategoryChange($event)" name="category">
+                <option [value]="cate.id" *ngFor="let cate of categories">{{ cate.category }}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="supplier_name" class="form-label">Supplier Name</label>
+            <select class="form-select" aria-label="Suppliers" [(ngModel)]="formData.supplier_name" (change)="onSupplierChange($event)" name="supplier_name">
+                <option [value]="supp.id" *ngFor="let supp of suppliers">{{ supp.name }}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="cost_price" class="form-label">Cost Price</label>
+            <input type="number" class="form-control" id="cost_price" [(ngModel)]="formData.cost_price" name="cost_price">
+        </div>
+        <div class="mb-3">
+            <label for="selling_price" class="form-label">Selling Price</label>
+            <input type="number" class="form-control" id="selling_price" [(ngModel)]="formData.selling_price" name="selling_price">
+        </div>
+        <div class="mb-3">
+            <label for="minimum_stock" class="form-label">Minimum Stock</label>
+            <input type="number" class="form-control" id="minimum_stock" [(ngModel)]="formData.minimum_stock" name="minimum_stock">
+        </div>
+        <div class="mb-3">
+            <label for="measurement_unit" class="form-label">Measurement Unit</label>
+            <select class="form-select" aria-label="Measurement Units" [(ngModel)]="formData.measurement_unit" (change)="onMeasurementUnitChange($event)" name="measurement_unit">
+                <option [value]="m_unit.id" *ngFor="let m_unit of measurementUnits">{{ m_unit.measurement_unit }}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="reorder_stock_quantity" class="form-label">Reorder Stock Quantity</label>
+            <input type="number" class="form-control" id="reorder_stock_quantity" [(ngModel)]="formData.reorder_stock_quantity" name="reorder_stock_quantity">
+        </div>
+    </form>
+
+    <button type="submit" class="btn btn-primary me-3" (click)="updated_product()">Update</button>
+    <button type="button" class="btn btn-secondary">Close</button>
+
+</div>

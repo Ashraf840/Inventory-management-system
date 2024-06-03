@@ -35,6 +35,36 @@ router.get('/get', (req, res, next) => {
 });
 
 
+router.get('/get/:id', (req, res, next) => {
+    let id = req.params.id;
+    let query = `SELECT 
+                    p.id,
+                    p.name,
+                    c.category,
+                    s.name AS supplier_name,
+                    p.cost_price,
+                    p.selling_price,
+                    p.minimum_stock,
+                    mu.measurement_unit,
+                    p.reorder_stock_quantity
+                FROM 
+                    inventory_mng_system.product p
+                LEFT JOIN 
+                    product_category c ON p.category = c.id
+                LEFT JOIN 
+                    inventory_mng_system.supplier s ON p.supplier = s.id
+                LEFT JOIN 
+                    measurement_unit mu ON p.measurement_unit = mu.id WHERE p.id=?`;
+    connection.query(query, [id], (err, result) => {
+        if (!err) {
+            return res.status(200).json(result);
+        } else {
+            return res.status(500).json(err);
+        }
+    });
+});
+
+
 router.post('/add', (req, res, next) => {
     let prod = req.body;
     let category = prod.category ? prod.category : null;

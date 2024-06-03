@@ -15,4 +15,20 @@ export class ProductService {
   getList(): Observable<any[]> {
     return this.http.get<any[]>(this.url + 'product/get');
   }
+
+  retrieve(id:number) {
+    return this.http.get<any>(this.url + 'product/get/' + id);
+  }
+
+  add(product: any) {
+    return this.http.post<any>(this.url + 'product/add', product);
+  }
+
+  update(product: any) {
+    return this.http.patch<any>(this.url + 'product/update', product);
+  }
+  
+  delete(id: number) {
+    return this.http.delete(this.url + 'product/delete/' + id);
+  }
 }

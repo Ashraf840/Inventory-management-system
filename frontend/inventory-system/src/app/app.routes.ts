@@ -7,10 +7,12 @@ import { MuUpdateComponent } from './product/measurement-unit/mu-update/mu-updat
 import { CateUpdateComponent } from './product/category/cate-update/cate-update.component';
 import { SupplierComponent } from './supplier/supplier.component';
 import { SuppUpdateComponent } from './supplier/supp-update/supp-update.component';
+import { ProdUpdateComponent } from './product/product/prod-update/prod-update.component';
 
 export const routes: Routes = [
     { path: '', component:DashboardComponent },
     { path: 'product', component:ProductComponent },
+        { path: 'product/update/:id', component:ProdUpdateComponent },
     { path: 'product/measurement-unit', component:MeasurementUnitComponent },
         { path: 'product/measurement-unit/update/:id', component:MuUpdateComponent },
     { path: 'product/category', component:CategoryComponent },
