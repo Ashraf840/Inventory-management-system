@@ -59,35 +59,5 @@
       </div>
     </div>
   </div>
-
-
-  <!-- Update Modal -->
-  <div class="modal fade" #updateModal id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="updateModalLabel">Update Measurement Unit</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Form content -->
-          <form>
-            <div class="mb-3">
-              <label for="m_unit" class="form-label">Unit Name</label>
-              <input type="text" class="form-control" id="m_unit" [(ngModel)]="formData.measurement_unit" name="measurement_unit">
-            </div>
-            <div class="mb-3">
-              <label for="abbreviation" class="form-label">Abbreviation</label>
-              <input type="text" class="form-control" id="abbreviation" [(ngModel)]="formData.abbreviation" name="abbreviation">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Update</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="m_unit_modal_close">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
     
 </div>

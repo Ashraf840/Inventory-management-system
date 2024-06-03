@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environments';
 import { Observable } from 'rxjs';
-import { MeasurementUnit } from '../interface/measurement-unit';
+import { MeasurementUnit } from '../interface/product/measurement-unit';
 
 @Injectable({
   providedIn: 'root'

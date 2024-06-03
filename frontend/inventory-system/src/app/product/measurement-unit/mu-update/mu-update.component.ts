@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MeasurementUnitService } from '../../../services/measurementt-unit.service';
-import { MeasurementUnit } from '../../../interface/measurement-unit';
+import { MeasurementUnit } from '../../../interface/product/measurement-unit';
 
 @Component({
   selector: 'app-mu-update',

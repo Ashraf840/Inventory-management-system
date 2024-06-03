@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MeasurementUnitComponent } from './product/measurement-unit/measurement-unit.component';
 import { CategoryComponent } from './product/category/category.component';
 import { MuUpdateComponent } from './product/measurement-unit/mu-update/mu-update.component';
+import { CateUpdateComponent } from './product/category/cate-update/cate-update.component';
 
 export const routes: Routes = [
     { path: '', component:DashboardComponent },
@@ -11,4 +12,5 @@ export const routes: Routes = [
     { path: 'product/measurement-unit', component:MeasurementUnitComponent },
         { path: 'product/measurement-unit/update/:id', component:MuUpdateComponent },
     { path: 'product/category', component:CategoryComponent },
+        { path: 'product/category/update/:id', component:CateUpdateComponent },
 ];

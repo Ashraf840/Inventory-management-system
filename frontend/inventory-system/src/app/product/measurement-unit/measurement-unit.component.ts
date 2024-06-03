@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MeasurementUnitService } from '../../services/measurementt-unit.service';
 import { NgFor } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-measurement-unit',
   standalone: true,
-  imports: [NgFor, FormsModule, RouterModule ],
+  imports: [NgFor, FormsModule ],
   templateUrl: './measurement-unit.component.html',
   styleUrl: './measurement-unit.component.css'
 })
@@ -41,7 +41,7 @@ export class MeasurementUnitComponent implements OnInit {
           m_unit_modal_close.click();
         }
         this.ngOnInit();
-    });    
+    });
   }
 
   update_m_unit(id: number) {

@@ -1,20 +1,55 @@
 <div class="div">
 
-    <h1>Product Category</h1>
+    <h1>Product Category
+      <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-plus ms-2" style="font-size: 25px; cursor: pointer;"></i></span>
+    </h1>
     
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Category</th>
+          <th scope="col">Update</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let cate of categoryList">
           <th scope="row">{{ cate?.id }}</th>
           <td>{{ cate?.category }}</td>
+          <td>
+            <button type="button" class="btn btn-info" (click)="update_category(cate.id)">Update</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="delete_category(cate.id)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
     
+
+    <!-- Add Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Category</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Form content -->
+          <form>
+            <div class="mb-3">
+              <label for="category" class="form-label">Category Name</label>
+              <input type="text" class="form-control" id="category" [(ngModel)]="formData.category" name="category">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" (click)="add_category()">Add</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="category_modal_close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
