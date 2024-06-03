@@ -17,6 +17,19 @@ router.get('/get', (req, res, next) => {
 });
 
 
+router.get('/get/:id', (req, res, next) => {
+    let id = req.params.id;
+    let query = "SELECT * FROM inventory_mng_system.supplier WHERE id=?";
+    connection.query(query, [id], (err, result) => {
+        if (!err) {
+            return res.status(200).json(result[0]);
+        } else {
+            return res.status(500).json(err);
+        }
+    });
+});
+
+
 router.post('/add', (req, res, next) => {
     let supp = req.body;
     let address = supp.address ? supp.address : null;

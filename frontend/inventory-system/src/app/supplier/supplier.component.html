@@ -1,0 +1,72 @@
+<div class="div">
+
+    <h1>Supplier
+        <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-plus ms-2" style="font-size: 25px; cursor: pointer;"></i></span>
+    </h1>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Contact</th>
+          <th scope="col">Email</th>
+          <th scope="col">Detail</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let supp of suppliers">
+          <th scope="row">{{ supp.id }}</th>
+          <th scope="row">{{ supp.name }}</th>
+          <th scope="row">{{ supp.contact }}</th>
+          <th scope="row">{{ supp.email }}</th>
+          <td>
+            <button type="button" class="btn btn-info" (click)="update_supplier(supp?.id)">Detail</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="delete_supplier(supp?.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <!-- Add Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Supplier</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Form content -->
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" [(ngModel)]="formData.name" name="name">
+            </div>
+            <div class="mb-3">
+              <label for="contact" class="form-label">Contact</label>
+              <input type="text" class="form-control" id="contact" [(ngModel)]="formData.contact" name="contact">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" [(ngModel)]="formData.email" name="email">
+            </div>
+            <div class="mb-3 d-block">
+                <label for="address" class="form-label">Address</label><br/>
+                <textarea name="address" id="address" [(ngModel)]="formData.address" name="address"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" (click)="add_supplier()">Add</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+</div>

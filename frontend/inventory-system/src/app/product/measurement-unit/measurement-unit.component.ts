@@ -45,7 +45,6 @@ export class MeasurementUnitComponent implements OnInit {
   }
 
   update_m_unit(id: number) {
-    console.log("id", id);
     this.router.navigate(['product/measurement-unit/update', id]);
   }
 
