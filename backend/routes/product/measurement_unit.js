@@ -17,6 +17,19 @@ router.get('/get', (req, res, next) => {
 });
 
 
+router.get('/get/:id', (req, res, next) => {
+    let id = req.params.id;
+    let query = "SELECT * FROM inventory_mng_system.measurement_unit WHERE id=?";
+    connection.query(query, [id], (err, result) => {
+        if (!err) {
+            return res.status(200).json(result);
+        } else {
+            return res.status(500).json(err);
+        }
+    });
+});
+
+
 router.post('/add', (req, res, next) => {
     let m_unit = req.body;
     let abbreviation = m_unit.abbreviation ? m_unit.abbreviation : null;
@@ -33,7 +46,7 @@ router.post('/add', (req, res, next) => {
 
 // Handle from the frontend
 // Even in the update form in the frontend, the 'abbreviation' field stays empty, then put null anyway.
-router.patch('/update', auth.authenticateToken, checkRole.AllowAdminOnly, (req, res, next) => {
+router.patch('/update', (req, res, next) => {
     let m_unit = req.body;
     let abbreviation = m_unit.abbreviation ? m_unit.abbreviation : null;
     let query = "UPDATE inventory_mng_system.measurement_unit SET measurement_unit=?, abbreviation=? WHERE id=?";

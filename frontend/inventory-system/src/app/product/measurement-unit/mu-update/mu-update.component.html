@@ -1,0 +1,19 @@
+<div class="div">
+
+    <h1>Measurement Units Update</h1>
+
+    <form>
+        <div class="mb-3">
+          <label for="m_unit" class="form-label">Unit Name</label>
+          <input type="text" class="form-control" id="m_unit" [(ngModel)]="formData.measurement_unit" name="measurement_unit">
+        </div>
+        <div class="mb-3">
+          <label for="abbreviation" class="form-label">Abbreviation</label>
+          <input type="text" class="form-control" id="abbreviation" [(ngModel)]="formData.abbreviation" name="abbreviation">
+        </div>
+    </form>
+
+    <button type="submit" class="btn btn-primary me-3" (click)="update_m_unit(id)">Update</button>
+    <button type="button" class="btn btn-secondary">Close</button>
+
+</div>

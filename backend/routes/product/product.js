@@ -6,7 +6,25 @@ const checkRole = require('../../services/checkRole');
 
 
 router.get('/get', (req, res, next) => {
-    let query = "SELECT * FROM inventory_mng_system.product";
+    // let query = "SELECT * FROM inventory_mng_system.product";
+    let query = `SELECT 
+                    p.id,
+                    p.name,
+                    c.category,
+                    s.name AS supplier_name,
+                    p.cost_price,
+                    p.selling_price,
+                    p.minimum_stock,
+                    mu.measurement_unit,
+                    p.reorder_stock_quantity
+                FROM 
+                    inventory_mng_system.product p
+                LEFT JOIN 
+                    product_category c ON p.category = c.id
+                LEFT JOIN 
+                    inventory_mng_system.supplier s ON p.supplier = s.id
+                LEFT JOIN 
+                    measurement_unit mu ON p.measurement_unit = mu.id`;
     connection.query(query, (err, result) => {
         if (!err) {
             return res.status(200).json(result);

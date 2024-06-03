@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -14,16 +14,14 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 export class AppComponent implements OnInit{
   title = 'inventory-system';
 
-  constructor(private el:ElementRef) {}
+  constructor() {}
   
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void { }
 
   toggleDropdown(val: string) {
-    console.log("Clicked dropdown:", val);
+    // console.log("Clicked dropdown:", val);
     let drpElem = document.querySelector(`.dropdown-container-${val}`);
-    console.log("drpElem:", drpElem);
+    // console.log("drpElem:", drpElem);
     drpElem?.classList.toggle('show');
   }
 }

@@ -1,6 +1,14 @@
 import { Routes } from '@angular/router';
 import { ProductComponent } from './product/product/product.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MeasurementUnitComponent } from './product/measurement-unit/measurement-unit.component';
+import { CategoryComponent } from './product/category/category.component';
+import { MuUpdateComponent } from './product/measurement-unit/mu-update/mu-update.component';
 
 export const routes: Routes = [
+    { path: '', component:DashboardComponent },
     { path: 'product', component:ProductComponent },
+    { path: 'product/measurement-unit', component:MeasurementUnitComponent },
+        { path: 'product/measurement-unit/update/:id', component:MuUpdateComponent },
+    { path: 'product/category', component:CategoryComponent },
 ];
