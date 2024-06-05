@@ -2,14 +2,13 @@
 
     <h1>Category Update</h1>
 
-    <form>
+    <form [formGroup]="updateCategoryForm" (ngSubmit)="handle_update_category()">
         <div class="mb-3">
           <label for="category" class="form-label">Category</label>
-          <input type="text" class="form-control" id="category" [(ngModel)]="formData.category" name="category">
+          <input type="text" class="form-control" id="category" formControlName="category">
         </div>
+        <button type="submit" class="btn btn-primary me-3" [disabled]="updateCategoryForm.invalid">Update</button>
+        <button type="button" class="btn btn-secondary" routerLink="../../">Close</button>
     </form>
-
-    <button type="submit" class="btn btn-primary me-3" (click)="update_category(id)">Update</button>
-    <button type="button" class="btn btn-secondary">Close</button>
 
 </div>
