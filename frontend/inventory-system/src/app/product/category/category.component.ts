@@ -1,51 +1,63 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { NgFor } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Category } from '../../interface/product/category';
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [NgFor, FormsModule],
+  imports: [NgFor, FormsModule, ReactiveFormsModule],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
 export class CategoryComponent implements OnInit {
 
-  categoryList: any | undefined;
+  categoryList!: Category[];
+
+  createCategoryForm!: FormGroup;
   
   constructor (
     private categoryService: CategoryService,
     private router: Router
   ) {}
   
-  formData = {
-    category: '',
-  };
+  // formData = {
+  //   category: '',
+  // };
   
   ngOnInit(): void {
     this.categoryService.getList().subscribe(data => {
       this.categoryList = data;
       console.log(this.categoryList);
     });
+
+    this.initCreateCategoryForm();
   }
 
-  add_category() {
-    this.categoryService.add(this.formData).subscribe(data => {
-      let category_modal_close = document.querySelector("#category_modal_close") as HTMLElement;
-        if (category_modal_close) {
-          category_modal_close.click();
+  handle_add_category() {
+    this.categoryService.add(this.createCategoryForm.value).subscribe(data => {
+      let modal_close = document.querySelector("#modal_close") as HTMLElement;
+        if (modal_close) {
+          modal_close.click();
         }
         this.ngOnInit();
     });
   }
 
-  update_category(id: number) {
+  initCreateCategoryForm(): void {
+    this.createCategoryForm = new FormGroup({
+      category: new FormControl(null, Validators.required),
+    });
+  }
+
+  update_category(id: number | undefined) {
     this.router.navigate(['product/category/update', id]);
   }
 
-  delete_category(id: number) {
+  delete_category(id: number | undefined) {
+    if (id)
     this.categoryService.delete(id).subscribe(data => this.ngOnInit());
   }
 }

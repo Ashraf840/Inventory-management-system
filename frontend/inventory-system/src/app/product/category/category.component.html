@@ -38,17 +38,19 @@
         </div>
         <div class="modal-body">
           <!-- Form content -->
-          <form>
+          <form [formGroup]="createCategoryForm" (ngSubmit)="handle_add_category()">
             <div class="mb-3">
               <label for="category" class="form-label">Category Name</label>
-              <input type="text" class="form-control" id="category" [(ngModel)]="formData.category" name="category">
+              <input type="text" class="form-control" id="category" formControlName="category">
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" [disabled]="createCategoryForm.invalid">Add</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_close">Close</button>
             </div>
           </form>
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" (click)="add_category()">Add</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="category_modal_close">Close</button>
-        </div>
+        
       </div>
     </div>
   </div>
