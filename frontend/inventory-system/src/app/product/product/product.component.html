@@ -43,62 +43,62 @@
 
 
     <!-- Add Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New Product</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Form content -->
-          <form>
-            <div class="mb-3">
-              <label for="p_name" class="form-label">Product Name</label>
-              <input type="text" class="form-control" id="p_name" [(ngModel)]="formData.name" name="name">
-            </div>
-            <div class="mb-3">
-              <label for="p_cate" class="form-label">Category</label>
-              <select class="form-select" aria-label="Categories" [(ngModel)]="formData.category" (change)="onCategoryChange($event)" name="category">
-                <option [value]="cate.id" *ngFor="let cate of categories">{{ cate.category }}</option>
-            </select>
-            </div>
-            <div class="mb-3">
-              <label for="p_supp" class="form-label">Supplier</label>
-              <select class="form-select" aria-label="Suppliers" [(ngModel)]="formData.supplier_name" (change)="onSupplierChange($event)" name="supplier_name">
-                <option [value]="supp.id" *ngFor="let supp of suppliers">{{ supp.name }}</option>
-            </select>
-            </div>
-            <div class="mb-3">
-              <label for="p_cprice" class="form-label">Cost Price</label>
-              <input type="number" class="form-control" id="p_cprice" [(ngModel)]="formData.cost_price" name="cost_price">
-            </div>
-            <div class="mb-3">
-              <label for="p_sprice" class="form-label">Selling Price</label>
-              <input type="number" class="form-control" id="p_sprice" [(ngModel)]="formData.selling_price" name="selling_price">
-            </div>
-            <div class="mb-3">
-              <label for="p_min_stock" class="form-label">Minimum Stock</label>
-              <input type="number" class="form-control" id="p_min_stock" [(ngModel)]="formData.minimum_stock" name="minimum_stock">
-            </div>
-            <div class="mb-3">
-              <label for="p_m_unit" class="form-label">Measurement Unit</label>
-              <select class="form-select" aria-label="Measurement Units" [(ngModel)]="formData.measurement_unit" (change)="onMeasurementUnitChange($event)" name="measurement_unit">
-                <option [value]="m_unit.id" *ngFor="let m_unit of measurementUnits">{{ m_unit.measurement_unit }}</option>
-            </select>
-            </div>
-            <div class="mb-3">
-              <label for="p_re_stock_qunt" class="form-label">Reorder Stock Quantity</label>
-              <input type="number" class="form-control" id="p_re_stock_qunt" [(ngModel)]="formData.reorder_stock_quantity" name="reorder_stock_quantity">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" (click)="add_prod()">Add</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_close">Close</button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New Product</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Form content -->
+            <form [formGroup]="createProductForm" (ngSubmit)="handle_add_prod()">
+              <div class="mb-3">
+                <label for="p_name" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="p_name" formControlName="name">
+              </div>
+              <div class="mb-3">
+                <label for="p_cate" class="form-label">Category</label>
+                <select class="form-select" aria-label="Categories" formControlName="category">
+                  <option [value]="cate.id" *ngFor="let cate of categories">{{ cate.category }}</option>
+              </select>
+              </div>
+              <div class="mb-3">
+                <label for="p_supp" class="form-label">Supplier</label>
+                <select class="form-select" aria-label="Suppliers" formControlName="supplier">
+                  <option [value]="supp.id" *ngFor="let supp of suppliers">{{ supp.name }}</option>
+              </select>
+              </div>
+              <div class="mb-3">
+                <label for="p_cprice" class="form-label">Cost Price</label>
+                <input type="number" class="form-control" id="p_cprice" formControlName="cost_price">
+              </div>
+              <div class="mb-3">
+                <label for="p_sprice" class="form-label">Selling Price</label>
+                <input type="number" class="form-control" id="p_sprice" formControlName="selling_price">
+              </div>
+              <div class="mb-3">
+                <label for="p_min_stock" class="form-label">Minimum Stock</label>
+                <input type="number" class="form-control" id="p_min_stock" formControlName="minimum_stock">
+              </div>
+              <div class="mb-3">
+                <label for="p_m_unit" class="form-label">Measurement Unit</label>
+                <select class="form-select" aria-label="Measurement Units" formControlName="measurement_unit">
+                  <option [value]="m_unit.id" *ngFor="let m_unit of measurementUnits">{{ m_unit.measurement_unit }}</option>
+              </select>
+              </div>
+              <div class="mb-3">
+                <label for="p_re_stock_qunt" class="form-label">Reorder Stock Quantity</label>
+                <input type="number" class="form-control" id="p_re_stock_qunt" formControlName="reorder_stock_quantity">
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_close">Close</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
     
 </div>

@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SupplierService } from '../../services/supplier.service';
 import { Supplier } from '../../interface/supplier/supplier';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-supp-update',
   standalone: true,
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './supp-update.component.html',
   styleUrl: './supp-update.component.css'
 })
 export class SuppUpdateComponent implements OnInit {
 
   id!: number;
+
   supplier!: Supplier;
+
+  updateSupplierForm!: FormGroup;
   
   constructor(
     private route: ActivatedRoute, 
@@ -23,6 +26,8 @@ export class SuppUpdateComponent implements OnInit {
   ) {}
   
   ngOnInit(): void {
+    this.initUpdateSupplierForm();
+
     this.id = parseInt(this.route.snapshot.params['id']);
     console.log("supp id:", this.id);
 
@@ -30,33 +35,34 @@ export class SuppUpdateComponent implements OnInit {
       this.supplier = data;
 
       console.log("result:", this.supplier);
-      
-      this.formData.name = this.supplier.name;
-      this.formData.contact = this.supplier.contact;
-      this.formData.email = this.supplier.email;
-      this.formData.address = this.supplier?.address ? this.supplier?.address : '';
+      if (this.supplier?.id && this.supplier?.address)
+        this.supplierFormPatchValue(this.supplier?.id, this.supplier?.name, this.supplier?.contact, this.supplier?.email, this.supplier?.address);
     })
+
   }
 
-  formData = {
-    name: '',
-    contact: '',
-    email: '',
-    address: ''
-  };
+  initUpdateSupplierForm(): void {
+    this.updateSupplierForm = new FormGroup({
+      id: new FormControl(null, Validators.required),
+      name: new FormControl(null, Validators.required),
+      contact: new FormControl(null, Validators.required),
+      email: new FormControl(null, Validators.required),
+      address: new FormControl(),
+    });
+  }
 
-  update_supplier(id: number) {
-    console.log("update function:", id);
-    console.log("formdata:", this.formData);
+  supplierFormPatchValue(id: number, name: string, contact: string, email: string, address: string) {
+    this.updateSupplierForm.patchValue({
+      id: id,
+      name: name,
+      contact: contact,
+      email: email,
+      address: address
+    });
+  }
 
-    let updatedData = {
-      id : id,
-      name : this.formData.name,
-      contact : this.formData.contact,
-      email : this.formData.email,
-      address : this.formData.address,
-    }
-    this.supplierService.update(updatedData).subscribe(data => {
+  handle_update_supplier() {
+    this.supplierService.update(this.updateSupplierForm.value).subscribe(data => {
       this.router.navigate(['/supplier']);
     });
   }

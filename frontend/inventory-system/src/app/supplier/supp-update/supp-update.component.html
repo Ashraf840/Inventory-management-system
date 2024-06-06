@@ -2,26 +2,26 @@
 
     <h1>Supplier Information</h1>
 
-    <form>
+    <form [formGroup]="updateSupplierForm" (ngSubmit)="handle_update_supplier()">
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" [(ngModel)]="formData.name" name="name">
+            <input type="text" class="form-control" id="name" formControlName="name">
           </div>
           <div class="mb-3">
             <label for="contact" class="form-label">Contact</label>
-            <input type="text" class="form-control" id="contact" [(ngModel)]="formData.contact" name="contact">
+            <input type="text" class="form-control" id="contact" formControlName="contact">
           </div>
           <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" [(ngModel)]="formData.email" name="email">
+              <input type="email" class="form-control" id="email" formControlName="email">
           </div>
           <div class="mb-3 d-block">
               <label for="address" class="form-label">Address</label><br/>
-              <textarea name="address" id="address" [(ngModel)]="formData.address" name="address"></textarea>
+              <textarea name="address" id="address" formControlName="address"></textarea>
           </div>
+          <button type="submit" class="btn btn-primary me-3" [disabled]="updateSupplierForm.invalid">Update</button>
+          <button type="button" class="btn btn-secondary" routerLink="../../">Close</button>
     </form>
 
-    <button type="submit" class="btn btn-primary me-3" (click)="update_supplier(id)">Update</button>
-    <button type="button" class="btn btn-secondary">Close</button>
 
 </div>

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MeasurementUnitService } from '../../../services/measurementt-unit.service';
 import { MeasurementUnit } from '../../../interface/product/measurement-unit';
 
 @Component({
   selector: 'app-mu-update',
   standalone: true,
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './mu-update.component.html',
   styleUrl: './mu-update.component.css'
 })
@@ -17,6 +17,8 @@ export class MuUpdateComponent implements OnInit {
 
   measurementUnit!: MeasurementUnit;
 
+  updateMeasurementUnitForm!: FormGroup;
+
   constructor(
     private route: ActivatedRoute, 
     private measurementUnitService: MeasurementUnitService,
@@ -25,34 +27,28 @@ export class MuUpdateComponent implements OnInit {
   
   ngOnInit(): void {
     this.id = parseInt(this.route.snapshot.params['id']);
-    // console.log("mu id:", typeof(this.id));
-
     this.measurementUnitService.retrieve(this.id).subscribe(data => {
       this.measurementUnit = data[0];
-      
-      // console.log("result:", this.measurementUnit);
-      this.formData.measurement_unit = this.measurementUnit?.measurement_unit;
-      this.formData.abbreviation = this.measurementUnit?.abbreviation ? this.measurementUnit?.abbreviation : '';
+      this.updateMeasurementUnitForm.patchValue({
+        id: this.measurementUnit?.id,
+        measurement_unit: this.measurementUnit?.measurement_unit,
+        abbreviation: this.measurementUnit?.abbreviation,
+      });
     })
+    this.initUpdateMeasurementUnitForm();
   }
 
-  formData = {
-    measurement_unit: '',
-    abbreviation: ''
-  };
-
-  update_m_unit(id: number) {
-    console.log("update function:", id);
-    console.log("formdata:", this.formData);
-
-    let updatedData = {
-      id : id,
-      measurement_unit : this.formData.measurement_unit,
-      abbreviation : this.formData.abbreviation,
-    }
-    this.measurementUnitService.update(updatedData).subscribe(data => {
-      this.router.navigate(['product/measurement-unit']);
+  initUpdateMeasurementUnitForm(): void {
+    this.updateMeasurementUnitForm = new FormGroup({
+      id: new FormControl(null, Validators.required),
+      measurement_unit: new FormControl(null, Validators.required),
+      abbreviation: new FormControl()
     });
   }
 
+  handle_update_m_unit() {
+    this.measurementUnitService.update(this.updateMeasurementUnitForm.value).subscribe(data => {
+      this.router.navigate(['product/measurement-unit']);
+    });
+  }
 }

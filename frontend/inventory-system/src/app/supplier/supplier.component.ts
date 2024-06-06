@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { SupplierService } from '../services/supplier.service';
 import { Supplier } from '../interface/supplier/supplier';
 import { NgFor } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-supplier',
   standalone: true,
-  imports: [NgFor, FormsModule],
+  imports: [NgFor, ReactiveFormsModule],
   templateUrl: './supplier.component.html',
   styleUrl: './supplier.component.css'
 })
@@ -16,7 +16,7 @@ export class SupplierComponent implements OnInit {
 
   suppliers!: Supplier[];
 
-  supplier!: Supplier;
+  createSupplierForm!: FormGroup;
   
   constructor(
     private supplierService: SupplierService,
@@ -28,18 +28,21 @@ export class SupplierComponent implements OnInit {
       this.suppliers = data;
       console.log(data);
     });
+
+    this.initCreateSupplierForm();
   }
 
-  formData = {
-    name: '',
-    contact: '',
-    email: '',
-    address: ''
-  };
+  initCreateSupplierForm(): void {
+    this.createSupplierForm = new FormGroup({
+      name: new FormControl(null, Validators.required),
+      contact: new FormControl(null, Validators.required),
+      email: new FormControl(null, Validators.required),
+      address: new FormControl(),
+    });
+  }
 
-  add_supplier() {
-    this.supplier = this.formData;
-    this.supplierService.add(this.supplier).subscribe(data => {
+  handle_add_supplier() {
+    this.supplierService.add(this.createSupplierForm.value).subscribe(data => {
     let modal_close = document.querySelector("#modal_close") as HTMLElement;
     if (modal_close) {
       modal_close.click();
@@ -53,8 +56,6 @@ export class SupplierComponent implements OnInit {
   }
 
   delete_supplier(id: number | undefined) {
-    console.log("delete id:", id)
-    
     if (id !== undefined) {
       this.supplierService.delete(id).subscribe(data => {
         this.ngOnInit();

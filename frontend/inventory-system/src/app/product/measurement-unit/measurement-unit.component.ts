@@ -1,21 +1,21 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MeasurementUnitService } from '../../services/measurementt-unit.service';
 import { NgFor } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-measurement-unit',
   standalone: true,
-  imports: [NgFor, FormsModule ],
+  imports: [NgFor, ReactiveFormsModule ],
   templateUrl: './measurement-unit.component.html',
   styleUrl: './measurement-unit.component.css'
 })
 export class MeasurementUnitComponent implements OnInit {
 
-  @ViewChild('updateModal') updateModal!: ElementRef;
-  
   measurementUnits: any;
+
+  createMeasurementUnitForm!: FormGroup;
 
   constructor (
     private measurementUnitService: MeasurementUnitService,
@@ -27,20 +27,23 @@ export class MeasurementUnitComponent implements OnInit {
       this.measurementUnits = data;
       console.log(this.measurementUnits);
     });
+    this.initCreateMeasurementUnitForm();
   }
-  
-  formData = {
-    measurement_unit: '',
-    abbreviation: ''
-  };
 
-  add_m_unit() {
-    this.measurementUnitService.add(this.formData).subscribe(data => {
-      let m_unit_modal_close = document.querySelector("#m_unit_modal_close") as HTMLElement;
-        if (m_unit_modal_close) {
-          m_unit_modal_close.click();
+  handle_add_measurement_unit() {
+    this.measurementUnitService.add(this.createMeasurementUnitForm.value).subscribe(data => {
+      let modal_close = document.querySelector("#modal_close") as HTMLElement;
+        if (modal_close) {
+          modal_close.click();
         }
         this.ngOnInit();
+    });
+  }
+
+  initCreateMeasurementUnitForm(): void {
+    this.createMeasurementUnitForm = new FormGroup({
+      measurement_unit: new FormControl(null, Validators.required),
+      abbreviation: new FormControl(),
     });
   }
 
@@ -51,5 +54,4 @@ export class MeasurementUnitComponent implements OnInit {
   delete_m_unit(id: number) {
     this.measurementUnitService.delete(id).subscribe(data => this.ngOnInit());
   }
-  
 }

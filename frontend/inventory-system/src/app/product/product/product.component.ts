@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 import { CategoryService } from '../../services/category.service';
 import { MeasurementUnitService } from '../../services/measurementt-unit.service';
 import { SupplierService } from '../../services/supplier.service';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [NgFor, FormsModule],
+  imports: [NgFor, ReactiveFormsModule],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
@@ -23,6 +23,8 @@ export class ProductComponent implements OnInit {
   suppliers: any;
 
   measurementUnits: any;
+
+  createProductForm!: FormGroup;
   
   constructor (
     private productService: ProductService,
@@ -40,17 +42,29 @@ export class ProductComponent implements OnInit {
 
     this.categoryService.getList().subscribe(data => {
       this.categories = data;
-      // console.log("category:", this.categories);
     });
 
     this.supplierService.getList().subscribe(data => {
       this.suppliers = data;
-      // console.log("supplier:", this.suppliers);
     });
 
     this.measurementService.getList().subscribe(data => {
       this.measurementUnits = data;
-      // console.log("measurement units:", this.measurementUnits);
+    });
+
+    this.initCreateProductForm();
+  }
+
+  initCreateProductForm(): void {
+    this.createProductForm = new FormGroup({
+      name: new FormControl(null, Validators.required),
+      category: new FormControl(),
+      supplier: new FormControl(),
+      cost_price: new FormControl(null, Validators.required),
+      selling_price: new FormControl(null, Validators.required),
+      minimum_stock: new FormControl(null, Validators.required),
+      measurement_unit: new FormControl(),
+      reorder_stock_quantity: new FormControl(null, Validators.required),
     });
   }
 
@@ -58,42 +72,13 @@ export class ProductComponent implements OnInit {
     this.router.navigate(['product/update', id]);
   }
 
-  formData = {
-    name: "",
-    category: "",
-    supplier_name: "",
-    cost_price: 0,
-    selling_price: 0,
-    minimum_stock: 0,
-    measurement_unit: "",
-    reorder_stock_quantity: 0
-  };
-  
-  onCategoryChange(event: Event): void {
-    this.formData.category = (event.target as HTMLSelectElement).value;
-  }
+  handle_add_prod() {
 
-  onSupplierChange(event: Event): void {
-    this.formData.supplier_name = (event.target as HTMLSelectElement).value;
-  }
+    this.createProductForm.value.category = parseInt(this.createProductForm.value.category);
+    this.createProductForm.value.supplier = parseInt(this.createProductForm.value.supplier);
+    this.createProductForm.value.measurement_unit = parseInt(this.createProductForm.value.measurement_unit);
 
-  onMeasurementUnitChange(event: Event): void {
-    this.formData.measurement_unit = (event.target as HTMLSelectElement).value;
-  }
-
-  add_prod() {
-    let new_data = {
-      name: this.formData.name,
-      category: parseInt(this.formData.category),
-      supplier: parseInt(this.formData.supplier_name),
-      cost_price: this.formData.cost_price,
-      selling_price: this.formData.selling_price,
-      minimum_stock: this.formData.minimum_stock,
-      measurement_unit: parseInt(this.formData.measurement_unit),
-      reorder_stock_quantity: this.formData.reorder_stock_quantity
-    }
-
-    this.productService.add(new_data).subscribe(data => {
+    this.productService.add(this.createProductForm.value).subscribe(data => {
       let modal_close = document.querySelector("#modal_close") as HTMLElement;
       if (modal_close) {
         modal_close.click();

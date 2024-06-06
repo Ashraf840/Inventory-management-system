@@ -42,28 +42,28 @@
         </div>
         <div class="modal-body">
           <!-- Form content -->
-          <form>
+          <form [formGroup]="createSupplierForm" (ngSubmit)="handle_add_supplier()">
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" [(ngModel)]="formData.name" name="name">
+              <input type="text" class="form-control" id="name" formControlName="name">
             </div>
             <div class="mb-3">
               <label for="contact" class="form-label">Contact</label>
-              <input type="text" class="form-control" id="contact" [(ngModel)]="formData.contact" name="contact">
+              <input type="text" class="form-control" id="contact" formControlName="contact">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" [(ngModel)]="formData.email" name="email">
+                <input type="email" class="form-control" id="email" formControlName="email">
             </div>
             <div class="mb-3 d-block">
                 <label for="address" class="form-label">Address</label><br/>
-                <textarea name="address" id="address" [(ngModel)]="formData.address" name="address"></textarea>
+                <textarea name="address" id="address" formControlName="address"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" [disabled]="createSupplierForm.invalid">Add</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_close">Close</button>
             </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" (click)="add_supplier()">Add</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_close">Close</button>
         </div>
       </div>
     </div>

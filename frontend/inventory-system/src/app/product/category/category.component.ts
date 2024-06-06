@@ -23,10 +23,6 @@ export class CategoryComponent implements OnInit {
     private router: Router
   ) {}
   
-  // formData = {
-  //   category: '',
-  // };
-  
   ngOnInit(): void {
     this.categoryService.getList().subscribe(data => {
       this.categoryList = data;
