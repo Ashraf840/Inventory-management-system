@@ -1,1 +1,30 @@
-<p>login works!</p>
+<!-- Icon -->
+<div class="fadeIn first icon-container">
+  <img src="auth/user-login.png" id="icon" alt="Login Icon" />
+  <h1 class="form-title">Login</h1>
+</div>
+
+<!-- Login Form -->
+<form>
+  <input
+    type="email"
+    id="email"
+    class="fadeIn second"
+    name="email"
+    placeholder="email"
+  />
+  <input
+    type="text"
+    id="password"
+    class="fadeIn third"
+    name="login"
+    placeholder="password"
+  />
+  <input type="submit" class="fadeIn fourth" value="Log In" />
+</form>
+<div id="formFooter">
+  <p>
+    Don't have an account?
+    <a class="underlineHover" routerLink="/auth/signup">Sign up</a>
+  </p>
+</div>
