@@ -50,8 +50,12 @@ router.post('/login', (req, res) => {
             } 
             else if (result[0].password === user.password) {
                 const response = { email: result[0].email, role: result[0].role };
-                const accessToken = jwt.sign(response, config.ACCESS_TOKEN, { expiresIn: '8h' });
-                return res.status(200).json({ toen: accessToken });
+                const accessToken = jwt.sign(response, config.ACCESS_TOKEN, { expiresIn: '1h' });
+                const refreshToken = jwt.sign(response, config.REFRESH_TOKEN, { expiresIn: '24h' });
+                return res.status(200).json({ 
+                    access_token: accessToken,
+                    refresh_token: refreshToken,
+                });
             } 
             else {
                 return res.status(401).json({ message: "Somethign went wrong. Please try again later." });

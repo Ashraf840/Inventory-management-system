@@ -6,6 +6,7 @@
     "DB_PASSWORD" : "ashraf826546",
     "DB_NAME" : "inventory_mng_system",
     "ACCESS_TOKEN": "73c39641b1e3efdf6878d028dcd79342bddfff673489ff7a27a3d198756a1f3e729502ac215fd106fbb8b11cab76df620c00a0a0c6e1e7988090dfc397dda6fe",
+    "REFRESH_TOKEN": "7f9e1146e849f3f227058590978509710ca3f0a34ce59c9f4bfd0c0881ed95d835f42cd13890c776d70e20da2836a4534fbedc3addffd3d0ad3a7067a18356e4",
     "USER_ADMIN": "admin",
     "USER_STAFF": "staff"
 }
