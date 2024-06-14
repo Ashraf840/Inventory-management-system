@@ -13,12 +13,14 @@ import { CateUpdateComponent } from './dashboard/product/category/cate-update/ca
 import { SupplierComponent } from './dashboard/supplier/supplier.component';
 import { SuppUpdateComponent } from './dashboard/supplier/supp-update/supp-update.component';
 import { authGuard } from './guards/auth.guard';
+import { unauthGuard } from './guards/unauth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { 
     path: 'auth', 
     component: AuthLayoutComponent,
+    canActivate: [unauthGuard],
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
@@ -40,14 +42,4 @@ export const routes: Routes = [
       { path: 'supplier/update/:id', component: SuppUpdateComponent },
     ],
   },
-  // { path: 'dashboard', component: DashboardLayoutComponent },
-  // { path: '', component:DashboardComponent },
-  // { path: 'product', component:ProductComponent },
-  //     { path: 'product/update/:id', component:ProdUpdateComponent },
-  // { path: 'product/measurement-unit', component:MeasurementUnitComponent },
-  //     { path: 'product/measurement-unit/update/:id', component:MuUpdateComponent },
-  // { path: 'product/category', component:CategoryComponent },
-  //     { path: 'product/category/update/:id', component:CateUpdateComponent },
-  // { path: 'supplier', component:SupplierComponent },
-  // { path: 'supplier/update/:id', component:SuppUpdateComponent },
 ];

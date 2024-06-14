@@ -96,7 +96,14 @@ input[type="reset"]:active {
   transform: scale(0.95);
 }
 
+input[type="submit"]:disabled {
+  background-color: #667177;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(102, 113, 119, 0.4);
+  box-shadow: 0 10px 30px 0 rgba(102, 113, 119, 0.4);
+}
+
 input[type="text"],
+input[type="password"],
 input[type="email"] {
   background-color: #f6f6f6;
   border: none;
@@ -119,12 +126,14 @@ input[type="email"] {
 }
 
 input[type="text"]:focus,
+input[type="password"]:focus,
 input[type="email"]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
 input[type="text"]:placeholder,
+input[type="password"]:placeholder,
 input[type="email"]:placeholder {
   color: #cccccc;
 }
