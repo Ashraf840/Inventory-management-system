@@ -54,7 +54,7 @@ export class CateUpdateComponent implements OnInit {
     // console.log(this.updateCategoryForm.value);
 
     this.categoryService.update(this.updateCategoryForm.value).subscribe(data => {
-      this.router.navigate(['product/category']);
+      this.router.navigate(['dashboard/product/category']);
     })
   }
 }

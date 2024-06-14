@@ -52,7 +52,7 @@ export class SupplierComponent implements OnInit {
   }
 
   update_supplier(id: number | undefined) {
-    this.router.navigate(['supplier/update', id]);
+    this.router.navigate(['dashboard/supplier/update', id]);
   }
 
   delete_supplier(id: number | undefined) {

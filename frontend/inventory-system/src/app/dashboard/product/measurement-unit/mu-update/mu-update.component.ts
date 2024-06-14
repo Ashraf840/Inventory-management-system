@@ -48,7 +48,7 @@ export class MuUpdateComponent implements OnInit {
 
   handle_update_m_unit() {
     this.measurementUnitService.update(this.updateMeasurementUnitForm.value).subscribe(data => {
-      this.router.navigate(['product/measurement-unit']);
+      this.router.navigate(['dashboard/product/measurement-unit']);
     });
   }
 }

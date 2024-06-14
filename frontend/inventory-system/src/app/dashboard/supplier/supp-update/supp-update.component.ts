@@ -63,7 +63,7 @@ export class SuppUpdateComponent implements OnInit {
 
   handle_update_supplier() {
     this.supplierService.update(this.updateSupplierForm.value).subscribe(data => {
-      this.router.navigate(['/supplier']);
+      this.router.navigate(['dashboard/supplier']);
     });
   }
 }

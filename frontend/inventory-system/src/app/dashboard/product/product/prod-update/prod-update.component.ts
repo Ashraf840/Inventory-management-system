@@ -112,7 +112,7 @@ export class ProdUpdateComponent implements OnInit {
 
   handle_updated_product() {
     this.productService.update(this.updateProductForm.value).subscribe(data => {
-      this.router.navigate(['/product']);
+      this.router.navigate(['dashboard/product']);
     });
   }
 }

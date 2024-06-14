@@ -69,7 +69,7 @@ export class ProductComponent implements OnInit {
   }
 
   update_product(id: number | undefined) {
-    this.router.navigate(['product/update', id]);
+    this.router.navigate(['dashboard/product/update', id]);
   }
 
   handle_add_prod() {

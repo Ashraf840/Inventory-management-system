@@ -49,7 +49,7 @@ export class CategoryComponent implements OnInit {
   }
 
   update_category(id: number | undefined) {
-    this.router.navigate(['product/category/update', id]);
+    this.router.navigate(['dashboard/product/category/update', id]);
   }
 
   delete_category(id: number | undefined) {
