@@ -22,7 +22,7 @@ export class DashboardLayoutComponent {
   
   handle_logout() {
     let jwt_token = localStorage.getItem(environment.JWT_TOKEN);
-    let modal_close = document.querySelector("#modal_close") as HTMLElement;
+    let modal_close = document.querySelector(".modal_close") as HTMLElement;
     if(jwt_token) {
       if (modal_close) {
         modal_close.click();

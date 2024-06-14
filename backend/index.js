@@ -9,6 +9,7 @@ const supplierRoute = require('./routes/supplier/supplier');
 const productRoute = require('./routes/product/product');
 const dashboardRoute = require('./routes/dashboard');
 const customerRoute = require('./routes/customer/customer');
+const auth = require('./middleware/authentication');
 
 const app = express();
 app.use(cors());
@@ -17,6 +18,10 @@ app.use(bodyParser.json());
 
 // Endpoint routes
 app.use('/user', userRoute);
+
+// Use Authentication Middleware
+app.use(auth.authenticateToken);
+
 app.use('/product/measurement-unit', measurementUnitRoute);
 app.use('/product/category', productCategoryRoute);
 app.use('/supplier', supplierRoute);

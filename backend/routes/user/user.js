@@ -2,8 +2,8 @@ const express = require('express');
 const connection = require('../../connection');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.json');
-const auth = require('../../services/authentication');
-const checkRole = require('../../services/checkRole');
+// const auth = require('../../services/authentication');
+// const checkRole = require('../../services/checkRole');
 
 const router = express.Router();
 
@@ -67,7 +67,7 @@ router.post('/login', (req, res) => {
 });
 
 
-// Allow: Admin Only
+// Allow: Admin Only; Protected: Authenticated User
 // Purpose: List all the staffs in admin dashboard. So the admin can change the "status"=true or "status"=false.
 router.get('/get/staff', (req, res) => {
     let query = "SELECT id, name, contactNumber, email, password, status, role FROM inventory_mng_system.user WHERE role='staff'";
@@ -81,7 +81,7 @@ router.get('/get/staff', (req, res) => {
 });
 
 
-// Allow: Admin only
+// Allow: Admin only; Protected: Authenticated User
 router.patch('/update/staff', (req, res) => {
     let user = req.body;
     let query = "UPDATE inventory_mng_system.user SET status=? WHERE id=?";

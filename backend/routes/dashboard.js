@@ -1,9 +1,9 @@
 const express = require('express');
 const connection = require('../connection');
 const router = express.Router();
-const auth = require('../services/authentication');
 
 
+// Protected: Authenticated users only
 router.get('/', (req, res, next) => {
     var productCount;
     var supplierCount;

@@ -1,8 +1,8 @@
 const express = require('express');
 const connection = require('../../connection');
 const router = express.Router();
-const auth = require('../../services/authentication');
-const checkRole = require('../../services/checkRole');
+// const auth = require('../../services/authentication');
+// const checkRole = require('../../services/checkRole');
 
 
 router.get('/get', (req, res, next) => {
