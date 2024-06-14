@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -10,6 +11,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class DashboardLayoutComponent {
 
+  router = inject(Router);
+  
   toggleDropdown(val: string) {
     // console.log("Clicked dropdown:", val);
     let drpElem = document.querySelector(`.dropdown-container-${val}`);
@@ -17,4 +20,15 @@ export class DashboardLayoutComponent {
     drpElem?.classList.toggle('show');
   }
   
+  handle_logout() {
+    let jwt_token = localStorage.getItem(environment.JWT_TOKEN);
+    let modal_close = document.querySelector("#modal_close") as HTMLElement;
+    if(jwt_token) {
+      if (modal_close) {
+        modal_close.click();
+      }
+      localStorage.removeItem(environment.JWT_TOKEN);
+      this.router.navigate(['/auth/login']);
+    }
+  }
 }

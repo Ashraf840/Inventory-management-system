@@ -16,7 +16,7 @@ import { authGuard } from './guards/auth.guard';
 import { unauthGuard } from './guards/unauth.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   { 
     path: 'auth', 
     component: AuthLayoutComponent,
@@ -42,4 +42,5 @@ export const routes: Routes = [
       { path: 'supplier/update/:id', component: SuppUpdateComponent },
     ],
   },
+  { path: '**', redirectTo: 'auth/login' },
 ];

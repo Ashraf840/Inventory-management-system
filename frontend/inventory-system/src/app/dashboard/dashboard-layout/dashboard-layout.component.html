@@ -77,6 +77,12 @@
         <li><a href="#">Transaction Types</a></li>
       </ul>
     </li>
+    <li>
+      <a data-bs-toggle="modal" data-bs-target="#logoutConfirmModal">
+        <span><i class="fa-solid fa-right-from-bracket"></i></span>
+        Logout</a
+      >
+    </li>
   </ul>
 </div>
 <!-- Side Navbar -->
@@ -86,3 +92,23 @@
   <router-outlet></router-outlet>
 </div>
 <!-- Main Content -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="logoutConfirmModal" tabindex="-1" aria-labelledby="logoutConfirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="logoutConfirmModalLabel">Logout?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Do You want to logout?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="modal_close" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" (click)="handle_logout()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
