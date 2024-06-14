@@ -5,22 +5,22 @@
 </div>
 
 <!-- Login Form -->
-<form>
+<form [formGroup]="loginForm" (ngSubmit)="handle_login()">
   <input
     type="email"
     id="email"
     class="fadeIn second"
-    name="email"
     placeholder="email"
+    formControlName="email"
   />
   <input
-    type="text"
+    type="password"
     id="password"
     class="fadeIn third"
-    name="login"
     placeholder="password"
+    formControlName="password"
   />
-  <input type="submit" class="fadeIn fourth" value="Log In" />
+  <input type="submit" [disabled]="loginForm.invalid" class="fadeIn fourth submit-btn" value="Log In" />
 </form>
 <div id="formFooter">
   <p>

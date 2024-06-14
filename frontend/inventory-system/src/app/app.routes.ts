@@ -13,12 +13,14 @@ import { CateUpdateComponent } from './dashboard/product/category/cate-update/ca
 import { SupplierComponent } from './dashboard/supplier/supplier.component';
 import { SuppUpdateComponent } from './dashboard/supplier/supp-update/supp-update.component';
 import { authGuard } from './guards/auth.guard';
+import { unauthGuard } from './guards/unauth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { 
     path: 'auth', 
     component: AuthLayoutComponent,
+    canActivate: [unauthGuard],
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
