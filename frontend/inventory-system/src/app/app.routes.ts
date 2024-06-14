@@ -12,6 +12,7 @@ import { CategoryComponent } from './dashboard/product/category/category.compone
 import { CateUpdateComponent } from './dashboard/product/category/cate-update/cate-update.component';
 import { SupplierComponent } from './dashboard/supplier/supplier.component';
 import { SuppUpdateComponent } from './dashboard/supplier/supp-update/supp-update.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -26,6 +27,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardLayoutComponent,
+    canActivate: [authGuard],
     children: [
       { path: '', component: DashboardDetailComponent },
       { path: 'product', component: ProductComponent },
