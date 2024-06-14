@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { SupplierService } from '../../services/supplier.service';
-import { Supplier } from '../../interface/supplier/supplier';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Supplier } from '../../../interface/supplier/supplier';
+import { SupplierService } from '../../../services/supplier.service';
 
 @Component({
   selector: 'app-supp-update',

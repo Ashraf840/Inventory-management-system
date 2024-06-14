@@ -1,0 +1,88 @@
+<!-- Top Navbar -->
+<div class="topnav">
+  <h1 routerLink="/dashboard">Inventory Management System</h1>
+  <span class="menu">
+    <i class="fa-solid fa-list"></i>
+  </span>
+</div>
+<!-- Top Navbar -->
+
+<!-- Side Navbar -->
+<div class="sidebar shadow p-1" id="sidebar">
+  <ul>
+    <li>
+      <a routerLink="/dashboard">
+        <span><i class="fa-solid fa-gauge"></i></span>
+        Dashboard</a
+      >
+    </li>
+    <li>
+      <a class="product" (click)="toggleDropdown('product')">
+        <span><i class="fa-solid fa-basket-shopping"></i></span>
+        Product
+        <span><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <ul class="dropdown-container-product">
+        <li><a routerLink="/dashboard/product">Products</a></li>
+        <li>
+          <a routerLink="/dashboard/product/measurement-unit">Measure Unit</a>
+        </li>
+        <li><a routerLink="/dashboard/product/category">Catgory</a></li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="/dashboard/supplier">
+        <span><i class="fa-solid fa-boxes-packing"></i></span>
+        Supplier</a
+      >
+    </li>
+    <li>
+      <a href="#">
+        <span><i class="fa-solid fa-person-circle-plus"></i></span>
+        Customer</a
+      >
+    </li>
+    <li>
+      <a href="#">
+        <span><i class="fa-solid fa-warehouse"></i></span>
+        Inventory</a
+      >
+    </li>
+    <li>
+      <a href="#">
+        <span><i class="fa-solid fa-cart-shopping"></i></span>
+        Purchase</a
+      >
+    </li>
+    <li>
+      <a href="#">
+        <span><i class="fa-regular fa-money-bill-1"></i></span>
+        Sales</a
+      >
+    </li>
+    <li>
+      <a href="#">
+        <span><i class="fa-solid fa-arrow-rotate-left"></i></span>
+        Return</a
+      >
+    </li>
+    <li>
+      <a class="accounting" (click)="toggleDropdown('accounting')">
+        <span><i class="fa-solid fa-file-invoice-dollar"></i></span>
+        Accounting
+        <span><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <ul class="dropdown-container-accounting">
+        <li><a href="#">Report</a></li>
+        <li><a href="#">Transaction Types</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<!-- Side Navbar -->
+
+<!-- Main Content -->
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>
+<!-- Main Content -->

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { MeasurementUnitService } from '../../../services/measurementt-unit.service';
-import { MeasurementUnit } from '../../../interface/product/measurement-unit';
+import { MeasurementUnit } from '../../../../interface/product/measurement-unit';
+import { MeasurementUnitService } from '../../../../services/measurementt-unit.service';
 
 @Component({
   selector: 'app-mu-update',

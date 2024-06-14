@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ProductService } from '../../../services/product.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MeasurementUnitService } from '../../../services/measurementt-unit.service';
 import { NgFor } from '@angular/common';
-import { SupplierService } from '../../../services/supplier.service';
-import { CategoryService } from '../../../services/category.service';
+import { ProductService } from '../../../../services/product.service';
+import { CategoryService } from '../../../../services/category.service';
+import { MeasurementUnitService } from '../../../../services/measurementt-unit.service';
+import { SupplierService } from '../../../../services/supplier.service';
 
 @Component({
   selector: 'app-prod-update',

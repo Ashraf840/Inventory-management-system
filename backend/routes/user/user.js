@@ -29,7 +29,7 @@ router.post('/signup', (req, res) => {
                 return res.status(400).json({ message: 'Email already exist!' });
             }
         } else {
-
+            return res.status(500).json(err);
         }
     });
 });

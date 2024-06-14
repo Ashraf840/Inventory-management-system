@@ -1,0 +1,86 @@
+.topnav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: #fff;
+    border-bottom: 1px solid rgb(128, 128, 128);
+}
+
+.topnav h1 {
+    float: left;
+    text-align: center;
+    font-size: 21px;
+    font-weight: bold;
+    padding: 14px 16px;
+}
+
+.menu {
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    color: black;
+    display: none;
+}
+
+.sidebar {
+    position: fixed;
+    top: 63px;
+    overflow: auto;
+    background-color: #fff;
+    height: 100%;
+    border-right: 1px solid rgb(128, 128, 128);
+    padding: 30px 5px;
+    margin: 0px;
+    width: 250px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar a {
+    text-decoration: none;
+    padding: 15px 10px;
+    color: #000;
+    text-align: left;
+    display: block;
+    cursor: pointer;
+}
+
+.sidebar span i {
+    padding: 0 10px;
+}
+
+.dropdown-container-product {
+    padding-left: 50px;
+    overflow-y: hidden;
+    max-height: 0px;
+    transition: all .15s ease;
+}
+
+.dropdown-container-accounting {
+    padding-left: 50px;
+    overflow-y: hidden;
+    max-height: 0px;
+    transition: all .15s ease;
+}
+
+.dropdown-container-product.show {
+    max-height: 1000px;
+    transition: all .15s ease;
+}
+
+.dropdown-container-accounting.show {
+    max-height: 1000px;
+    transition: all .15s ease;
+}
+
+.main-content {
+    margin-left: 260px;
+    margin-top: 90px;
+    padding: 1px 16px;
+}

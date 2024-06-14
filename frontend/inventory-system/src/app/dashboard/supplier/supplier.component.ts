@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SupplierService } from '../services/supplier.service';
-import { Supplier } from '../interface/supplier/supplier';
 import { NgFor } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Supplier } from '../../interface/supplier/supplier';
+import { SupplierService } from '../../services/supplier.service';
 
 @Component({
   selector: 'app-supplier',

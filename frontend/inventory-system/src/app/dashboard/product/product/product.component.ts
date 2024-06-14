@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
 import { NgFor } from '@angular/common';
 import { Router } from '@angular/router';
-import { CategoryService } from '../../services/category.service';
-import { MeasurementUnitService } from '../../services/measurementt-unit.service';
-import { SupplierService } from '../../services/supplier.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ProductService } from '../../../services/product.service';
+import { CategoryService } from '../../../services/category.service';
+import { MeasurementUnitService } from '../../../services/measurementt-unit.service';
+import { SupplierService } from '../../../services/supplier.service';
 
 @Component({
   selector: 'app-product',

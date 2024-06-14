@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { CategoryService } from '../../../services/category.service';
-import { Category } from '../../../interface/product/category';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Category } from '../../../../interface/product/category';
+import { CategoryService } from '../../../../services/category.service';
 
 @Component({
   selector: 'app-cate-update',
