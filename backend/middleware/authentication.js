@@ -12,7 +12,7 @@ function authenticateToken(req, res, next) {
 
     jwt.verify(token, config.ACCESS_TOKEN, (err, response) => {
         if (err)
-        return res.sendStatus(403)
+            return res.sendStatus(403)
         // console.log("response (after JWT verification):", response)
         res.locals = response
         next();

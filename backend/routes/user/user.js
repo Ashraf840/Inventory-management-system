@@ -50,8 +50,8 @@ router.post('/login', (req, res) => {
             } 
             else if (result[0].password === user.password) {
                 const response = { email: result[0].email, role: result[0].role };
-                const accessToken = jwt.sign(response, config.ACCESS_TOKEN, { expiresIn: '1h' });
-                const refreshToken = jwt.sign(response, config.REFRESH_TOKEN, { expiresIn: '24h' });
+                const accessToken = jwt.sign(response, config.ACCESS_TOKEN, { expiresIn: '10m' });
+                const refreshToken = jwt.sign(response, config.REFRESH_TOKEN, { expiresIn: '1d' });
                 return res.status(200).json({ 
                     access_token: accessToken,
                     refresh_token: refreshToken,
@@ -63,6 +63,30 @@ router.post('/login', (req, res) => {
         } else {
             return res.status(500).json(err);
         }
+    });
+});
+
+
+router.post('/refresh-token', (req, res) => {
+    const token = req.body;
+    const refresh_token = token?.refresh_token;
+    console.log("refresh_token - received:", refresh_token)
+    if (!refresh_token)
+        return res.status(401).json({ message: "Unauthorized" });
+    // console.log("refresh_token:", refresh_token);
+    // console.log("config.REFRESH_TOKEN:", config.REFRESH_TOKEN);
+    jwt.verify(refresh_token, config.REFRESH_TOKEN, (err, decoded) => {
+        if (err) {
+            return res.status(403).json({ message: "Forbidden" });
+        }
+        if (!decoded) {
+            return res.status(403).json({ message: "Token verification failed" });
+        }
+
+        // Sign & send a new jwt access token with the decoded user email & role.
+        const response = { email: decoded.email, role: decoded.role };
+        const accessToken = jwt.sign(response, config.ACCESS_TOKEN, { expiresIn: '10m' });
+        return res.status(200).json({ access_token: accessToken });
     });
 });
 

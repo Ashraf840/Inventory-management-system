@@ -28,7 +28,18 @@ export class AuthService {
     localStorage.setItem(environment.JWT_TOKEN, JSON.stringify(token));
   }
 
-  isLoggedIn() {
+  isLoggedIn(): boolean {
+    // console.log("JWT-TOKEN (isLoggedIn):", localStorage.getItem(environment.JWT_TOKEN));
+    
     return !!localStorage.getItem(environment.JWT_TOKEN);
+  }
+
+  obtainAccessToken(refresh_token: string): Observable<any> {
+    console.log("refresh_token - obtainAccessToken():", refresh_token);
+    return this.http.post<any>(this.url + 'user/refresh-token', {refresh_token: refresh_token});
+  }
+
+  logout(): void {
+    localStorage.removeItem(environment.JWT_TOKEN);
   }
 }
